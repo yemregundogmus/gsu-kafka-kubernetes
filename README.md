@@ -28,7 +28,7 @@ This repository provides an example implementation of a **microservices architec
    - Kubernetes is used for orchestration and scaling of services.
 
 ## Architecture Diagram
-![Architecture](pictures/app-arch-basic.png "Architecture")
+![Architecture](kafka-example/pictures/app-arch-basic.png "Architecture")
 
 ## Prerequisites
 - **Python 3.8+**
@@ -89,11 +89,11 @@ docker-compose --version
 ## Application Screenshots
 
 - **KafkaUI**
-  - ![KafkaUI](pictures/kafkaui.png "KafkaUI")
+  - ![KafkaUI](kafka-example/pictures/kafkaui.png "KafkaUI")
 - **Streamlit Interface**
-  - ![Streamlit](pictures/streamlit-app.png "Streamlit")
+  - ![Streamlit](kafka-example/pictures/streamlit-app.png "Streamlit")
 - **FastAPI Endpoint**
-  - ![FastAPI](pictures/fastapi-app.png "FastAPI")
+  - ![FastAPI](kafka-example/pictures/fastapi-app.png "FastAPI")
 
 ## Notes
 - This project is for **educational purposes** and does not represent a production-ready architecture.
