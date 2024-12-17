@@ -1,37 +1,5 @@
 version: '3.8'
-
 services:
-  fastapi:
-    build: ./fastapi
-    ports:
-      - "8000:8000"
-    volumes:
-      - shared-data:/data
-    networks:
-      - app-network
-    depends_on:
-      - kafka
-
-  streamlit:
-    build: ./streamlit
-    ports:
-      - "8501:8501"
-    volumes:
-      - shared-data:/data
-    networks:
-      - app-network
-    depends_on:
-      - kafka
-
-  kafka-consumer:
-    build: ./kafka_consumer
-    volumes:
-      - shared-data:/data
-    networks:
-      - app-network
-    depends_on:
-      - kafka
-
   zookeeper:
     image: 'bitnami/zookeeper:latest'
     ports:
@@ -66,10 +34,25 @@ services:
       - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
     networks:
       - app-network
+  
+  producer:
+    build: .
+    container_name: producer
+    command: python producer.py
+    depends_on:
+      - kafka
+    networks:
+      - app-network
+  
+  consumer:
+    build: .
+    container_name: consumer
+    command: python consumer.py
+    depends_on:
+      - kafka
+    networks:
+      - app-network
 
 networks:
   app-network:
     driver: bridge
-
-volumes:
-  shared-data:

@@ -1,0 +1,22 @@
+version: '3'
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672" # RabbitMQ Management UI için
+  
+  producer:
+    build: .
+    container_name: producer
+    command: python producer.py
+    depends_on:
+      - rabbitmq
+  
+  consumer:
+    build: .
+    container_name: consumer
+    command: python consumer.py
+    depends_on:
+      - rabbitmq
